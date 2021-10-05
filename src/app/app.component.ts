@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import * as Highcharts from 'highcharts';
+import * as Highcharts from 'highcharts/highstock';
+import { CHART_TYPE, YAXIS_CONFIGS } from 'src/constants/chart.config.constant';
+import { SeriesConfig } from 'src/constants/series.config';
 const scatterSeries1 = require('./../assets/dummyJSON/scatterSeries1');
 const scatterSeries2 = require('./../assets/dummyJSON/scatterSeries2');
 const scatterSeries3 = require('./../assets/dummyJSON/scatterSeries3');
@@ -37,6 +39,8 @@ export class AppComponent {
   options: any;
 
   ngOnInit() {
+    const SERIES = this.getSeries();
+
     this.options = {
       chart: {
         type: 'scatter',
@@ -115,121 +119,61 @@ export class AppComponent {
           }
         }
       },
-      series: [{
-        type: "line",
-        name: "line series",
-        boostThreshold: 1000,
-        lineWidth: 1,
-        turboThreshold: 1000,
-        cropThreshold: 10000,
-        step: "left",
-        color: "green",
-        marker: {
-          enabled: true,
-          radius: 2,
-          symbol: "circle"
-        },
-        states: {
-          hover: {
-            lineWidth: 0
-          }
-        },
-        enableMouseTracking: false,
-        data: lineSeries1.lineSeries1
-      }, {
-        type: "scatter",
-        name: "scatter series",
-        clip: true,
-        allowPointSelect: true,
-        zIndex: 3,
-        tooltip: {
-          xDateFormat: "%H:%M:%S"
-        },
-        turboThreshold: 10000,
-        lineWidth: 0,
-        color: "red",
-        marker: {
-          radius: 4,
-          symbol: "square",
-          enabled: undefined,
-          enabledThreshold: 0
-        },
-        data: scatterSeries1.scatterSeries1
-      },
-      {
-        type: "column",
-        name: "column series",
-        boostThreshold: 10000,
-        turboThreshold: 1000,
-        cropThreshold: 1000,
-        color: "#00bdf2",
-        grouping: false,
-        animationLimit: 1000,
-        zIndex: 0,
-        pointWidth: 0,
-        maxPointWidth: 0,
-        tooltip: {
-          xDateFormat: "%H:%M:%S"
-        },
-        marker: {
-          radius: 4
-        },
-        data: columnSeries1.columnSeries1
-      }],
+      series: [...SERIES]
     }
   }
 
   ngAfterViewInit() {
-    console.log(this.columnSeriesAll, this.lineSeriesAll, this.scatterSeriesAll);
+    // console.log(this.columnSeriesAll, this.lineSeriesAll, this.scatterSeriesAll);
     Highcharts.chart('container', this.options);
   }
 
+  getSeries() {
+    const columnSeries = this.getColumnSeries();
+    const scatterSeries = this.getScatterSeries();
+    const lineSeries = this.getLineSeries();
+    return [columnSeries, scatterSeries, lineSeries];
+  }
+
+  getColumnSeries() {
+    let series: SeriesConfig<Highcharts.SeriesColumnOptions> = new SeriesConfig<Highcharts.SeriesColumnOptions>(columnSeries1, CHART_TYPE.COLUMN);
+    const dataPoint = columnSeries1.columnSeries1;
+
+    return <Highcharts.SeriesColumnOptions>series
+      .setAttr("data", dataPoint)
+      .setAttr("color", "orange")
+      .setAttr("yAxis", 1)
+      .setAttr("zIndex", 0)
+      .build();
+  }
+
+  getScatterSeries() {
+    let series: SeriesConfig<Highcharts.SeriesScatterOptions> = new SeriesConfig<Highcharts.SeriesScatterOptions>(scatterSeries1, CHART_TYPE.SCATTER);
+    const dataPoint = scatterSeries1.scatterSeries1;
+
+    return <Highcharts.SeriesScatterOptions>series
+      .setAttr("data", dataPoint)
+      .setAttr("color", "red")
+      .setAttr("yAxis", 1)
+      .setAttr("zIndex", 0)
+      .build();
+  }
+
+  getLineSeries() {
+    let series: SeriesConfig<Highcharts.SeriesLineOptions> = new SeriesConfig<Highcharts.SeriesLineOptions>(lineSeries1, CHART_TYPE.LINE);
+
+    const dataPoint = lineSeries1.lineSeries1;
+
+    return <Highcharts.SeriesLineOptions>series
+      .setAttr("data", dataPoint)
+      .setAttr("color", "green")
+      .setAttr("yAxis", 0)
+      .setAttr("zIndex", 0)
+      .setAttr("legendIndex", 99)
+      .build();
+  }
+
   getYAxis() {
-    return [{
-      crosshair: {
-        label: {
-          enable: true,
-          format: '{value:.2f}'
-        }
-      },
-      title: {
-        offset: 60,
-        text: 'Price'
-      },
-      top: `0%`,
-      height: `30%`,
-      offset: 0,
-    },
-    {
-      crosshair: {
-        label: {
-          enable: true,
-          format: '{value:.2f}'
-        }
-      },
-      title: {
-        offset: 60,
-        text: 'Price'
-      },
-      top: `33%`,
-      height: `30%`,
-      offset: 0,
-    },
-    {
-      crosshair: {
-        label: {
-          enable: true,
-          format: '{value:.2f}'
-        }
-      },
-      title: {
-        offset: 60,
-        text: 'Volume'
-      },
-      top: `67%`,
-      height: `30%`,
-      offset: 0,
-    },
-  ];
+    return YAXIS_CONFIGS;
   }
 }

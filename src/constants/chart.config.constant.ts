@@ -51,3 +51,50 @@ export const COLUMN_SERIS_CONFIGS: Array<any> = [
     { name: 'Column Series 1', type: CHART_TYPE.COLUMN, chartId: "columnSeries1", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.BLUE },
     { name: 'Column Series 2', type: CHART_TYPE.COLUMN, chartId: "columnSeries2", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.BLACK }
 ]
+
+export const YAXIS_CONFIGS: Array<any> = [{
+    crosshair: {
+        label: {
+            enable: true,
+            format: '{value:.2f}'
+        }
+    },
+    title: {
+        offset: 60,
+        text: 'Price'
+    },
+    top: `0%`,
+    height: `30%`,
+    offset: 0,
+},
+{
+    crosshair: {
+        label: {
+            enable: true,
+            format: '{value:.2f}'
+        }
+    },
+    title: {
+        offset: 60,
+        text: 'Price'
+    },
+    top: `33%`,
+    height: `30%`,
+    offset: 0,
+},
+{
+    crosshair: {
+        label: {
+            enable: true,
+            format: '{value:.2f}'
+        }
+    },
+    title: {
+        offset: 60,
+        text: 'Volume'
+    },
+    top: `67%`,
+    height: `30%`,
+    offset: 0,
+},
+];
