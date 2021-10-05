@@ -1,4 +1,4 @@
-const lineSeries31 = [
+export const lineSeries31 = [
     [1613606400002, 27.08],
     [1613606401031, 26.95],
     [1613606403783, 26.94],
@@ -83073,5 +83073,4 @@ const lineSeries31 = [
     [1613659178146, 25.64]
   ];
   
-  export default lineSeries31;
   

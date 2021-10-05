@@ -1,4 +1,4 @@
-const columnSeries2 = [
+export const columnSeries2 = [
     [1613606400000, 50],
     [1613606401000, 62],
     [1613606403000, 100],
@@ -36628,6 +36628,4 @@ const columnSeries2 = [
     [1613692798000, 301],
     [1613692799000, 124]
   ];
-  
-  export default columnSeries2;
-  
+    
