@@ -98,6 +98,16 @@ export class SeriesConfig<T extends Highcharts.SeriesOptions> {
         }
         return this;
     }
+    setMarkerShape(symbol: any): SeriesConfig<T> {
+        if (!this.config["marker"]) {
+            this.config.marker = {};
+        }
+        this.config = <Series>{
+            ...this.config,
+            marker: { ...this.config["marker"], symbol }
+        };
+        return this;
+    }
     build() {
         return <T>this.config;
     }

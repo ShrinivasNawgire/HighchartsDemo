@@ -1,30 +1,30 @@
 import { Component } from '@angular/core';
 import * as Highcharts from 'highcharts/highstock';
-import { CHART_TYPE, YAXIS_CONFIGS } from 'src/constants/chart.config.constant';
+import { CHART_TYPE, LINE_SERIES_CONFIGS, SCATTER_SERIES_CONFIGS, YAXIS_CONFIGS } from 'src/constants/chart.config.constant';
 import { SeriesConfig } from 'src/constants/series.config';
-const scatterSeries1 = require('./../assets/dummyJSON/scatterSeries1');
-const scatterSeries2 = require('./../assets/dummyJSON/scatterSeries2');
-const scatterSeries3 = require('./../assets/dummyJSON/scatterSeries3');
-const scatterSeries4 = require('./../assets/dummyJSON/scatterSeries4');
-const scatterSeries5 = require('./../assets/dummyJSON/scatterSeries5');
-const scatterSeries6 = require('./../assets/dummyJSON/scatterSeries6');
-const scatterSeries7 = require('./../assets/dummyJSON/scatterSeries7');
-const scatterSeries8 = require('./../assets/dummyJSON/scatterSeries8');
-const scatterSeries9 = require('./../assets/dummyJSON/scatterSeries9');
-const scatterSeries10 = require('./../assets/dummyJSON/scatterSeries10');
-const scatterSeries11 = require('./../assets/dummyJSON/scatterSeries11');
-const scatterSeries12 = require('./../assets/dummyJSON/scatterSeries12');
-const scatterSeries13 = require('./../assets/dummyJSON/scatterSeries13');
+const scatterSeries1 = require('./../assets/dummyJSON/scatterSeries1.json');
+const scatterSeries2 = require('./../assets/dummyJSON/scatterSeries2.json');
+const scatterSeries3 = require('./../assets/dummyJSON/scatterSeries3.json');
+const scatterSeries4 = require('./../assets/dummyJSON/scatterSeries4.json');
+const scatterSeries5 = require('./../assets/dummyJSON/scatterSeries5.json');
+const scatterSeries6 = require('./../assets/dummyJSON/scatterSeries6.json');
+const scatterSeries7 = require('./../assets/dummyJSON/scatterSeries7.json');
+const scatterSeries8 = require('./../assets/dummyJSON/scatterSeries8.json');
+const scatterSeries9 = require('./../assets/dummyJSON/scatterSeries9.json');
+const scatterSeries10 = require('./../assets/dummyJSON/scatterSeries10.json');
+const scatterSeries11 = require('./../assets/dummyJSON/scatterSeries11.json');
+const scatterSeries12 = require('./../assets/dummyJSON/scatterSeries12.json');
+const scatterSeries13 = require('./../assets/dummyJSON/scatterSeries13.json');
 
-const lineSeries1 = require('./../assets/dummyJSON/lineSeries1');
-const lineSeries2 = require('./../assets/dummyJSON/lineSeries2');
-const lineSeries3 = require('./../assets/dummyJSON/lineSeries31');
-const lineSeries4 = require('./../assets/dummyJSON/lineSeries34');
-const lineSeries5 = require('./../assets/dummyJSON/lineSeries35');
+const lineSeries1 = require('./../assets/dummyJSON/lineSeries1.json');
+// const lineSeries2 = require('./../assets/dummyJSON/lineSeries2.json');
+const lineSeries3 = require('./../assets/dummyJSON/lineSeries31.json');
+const lineSeries4 = require('./../assets/dummyJSON/lineSeries34.json');
+const lineSeries5 = require('./../assets/dummyJSON/lineSeries35.json');
 
 
-const columnSeries1 = require('./../assets/dummyJSON/columnSeries1');
-const columnSeries2 = require('./../assets/dummyJSON/columnSeries2');
+const columnSeries1 = require('./../assets/dummyJSON/columnSeries1.json');
+const columnSeries2 = require('./../assets/dummyJSON/columnSeries2.json');
 
 @Component({
   selector: 'app-root',
@@ -137,32 +137,57 @@ export class AppComponent {
 
   getColumnSeries() {
     let series: SeriesConfig<Highcharts.SeriesColumnOptions> = new SeriesConfig<Highcharts.SeriesColumnOptions>(columnSeries1, CHART_TYPE.COLUMN);
-    const dataPoint = columnSeries1.columnSeries1;
+    const dataPoint = columnSeries1.data;
 
     return <Highcharts.SeriesColumnOptions>series
       .setAttr("data", dataPoint)
-      .setAttr("color", "orange")
       .setAttr("yAxis", 1)
       .setAttr("zIndex", 0)
+      .setAttr("legendIndex", 99)
+      .setAttr("index", 0)
       .build();
   }
 
   getScatterSeries() {
-    let series: SeriesConfig<Highcharts.SeriesScatterOptions> = new SeriesConfig<Highcharts.SeriesScatterOptions>(scatterSeries1, CHART_TYPE.SCATTER);
-    const dataPoint = scatterSeries1.scatterSeries1;
+    const AllScatterSeries: Array<any> = [];
+    AllScatterSeries.push(scatterSeries1, scatterSeries2, scatterSeries3, scatterSeries4,
+      scatterSeries5, scatterSeries6, scatterSeries7, scatterSeries8, scatterSeries9,
+      scatterSeries10, scatterSeries11, scatterSeries12, scatterSeries13);
 
-    return <Highcharts.SeriesScatterOptions>series
-      .setAttr("data", dataPoint)
-      .setAttr("color", "red")
-      .setAttr("yAxis", 1)
-      .setAttr("zIndex", 0)
-      .build();
+    return SCATTER_SERIES_CONFIGS.map(obj => {
+      const series: SeriesConfig<Highcharts.SeriesScatterOptions> = new SeriesConfig<Highcharts.SeriesScatterOptions>(obj.chartId, CHART_TYPE.SCATTER);
+      const seriesData = AllScatterSeries.find(series => series.seriesName === obj.chartId);
+      // console.log(seriesData);
+      if (!seriesData) {
+        return;
+      }
+      series
+        .setAttr("data", seriesData.data ? seriesData.data : [])
+        .setAttr("color", obj.color)
+        .setAttr("zIndex", 1);
+        if (obj.symbol) {
+          series.setMarkerShape(obj.symbol);
+        }
+        if (obj.index) {
+          series.setAttr("index", obj.index);
+        }
+        series.setAttr("id", obj.chartId);
+        if (obj.legendIndex) {
+          series.setAttr("legendIndex", obj.legendIndex);
+        }
+        if (obj.marker) {
+          series.setAttr("marker", obj.marker);
+        }
+
+        console.log(series);
+        return series.build();
+    });
   }
 
   getLineSeries() {
     let series: SeriesConfig<Highcharts.SeriesLineOptions> = new SeriesConfig<Highcharts.SeriesLineOptions>(lineSeries1, CHART_TYPE.LINE);
 
-    const dataPoint = lineSeries1.lineSeries1;
+    const dataPoint = lineSeries1.data;
 
     return <Highcharts.SeriesLineOptions>series
       .setAttr("data", dataPoint)
