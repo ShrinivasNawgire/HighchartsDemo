@@ -25,7 +25,7 @@ export enum SERIES_COLORS {
 export const SCATTER_SERIES_CONFIGS: Array<any> = [
     { name: 'Scatter Series 1', chartId: "scatterSeries1", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.GREEN },
     { name: 'Scatter Series 2', chartId: "scatterSeries2", index: 2, legendIndex: 2, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.GREY },
-    { name: 'Scatter Series 3', chartId: "scatterSeries3", index: 3, legendIndex: 3, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.ORANGE },
+    // { name: 'Scatter Series 3', chartId: "scatterSeries3", index: 3, legendIndex: 3, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.ORANGE },
     { name: 'Scatter Series 4', chartId: "scatterSeries4", index: 4, legendIndex: 4, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.RED },
     { name: 'Scatter Series 5', chartId: "scatterSeries5", index: 5, legendIndex: 5, symbol: MARKER_SYMBOL.TRIANGLE, color: SERIES_COLORS.GREEN },
     { name: 'Scatter Series 6', chartId: "scatterSeries6", index: 6, legendIndex: 6, symbol: MARKER_SYMBOL.TRIANGLE, color: SERIES_COLORS.GREY },
@@ -39,62 +39,70 @@ export const SCATTER_SERIES_CONFIGS: Array<any> = [
 ]
 
 export const LINE_SERIES_CONFIGS: Array<any> = [
-    { name: 'Line Series 1', type: CHART_TYPE.LINE, chartId: "lineSeries1", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLUE },
-    { name: 'Line Series 2', type: CHART_TYPE.LINE, chartId: "lineSeries2", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLACK },
-    { name: 'Line Series 3', type: CHART_TYPE.LINE, chartId: "lineSeries3", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
-    { name: 'Line Series 4', type: CHART_TYPE.LINE, chartId: "lineSeries4", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
-    { name: 'Line Series 5', type: CHART_TYPE.LINE, chartId: "lineSeries5", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
-    { name: 'Line Series 6', type: CHART_TYPE.LINE, chartId: "lineSeries6", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
+    { name: 'Line Series 1', type: CHART_TYPE.LINE, chartId: "lineSeries1", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLUE },
+    // { name: 'Line Series 2', type: CHART_TYPE.LINE, chartId: "lineSeries2", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLACK },
+    { name: 'Line Series 3', type: CHART_TYPE.LINE, chartId: "lineSeries31", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
+    { name: 'Line Series 4', type: CHART_TYPE.LINE, chartId: "lineSeries34", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
+    { name: 'Line Series 5', type: CHART_TYPE.LINE, chartId: "lineSeries35", index: 99, legendIndex: 9, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET }
 ]
 
 export const COLUMN_SERIS_CONFIGS: Array<any> = [
-    { name: 'Column Series 1', type: CHART_TYPE.COLUMN, chartId: "columnSeries1", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.BLUE },
-    { name: 'Column Series 2', type: CHART_TYPE.COLUMN, chartId: "columnSeries2", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.BLACK }
+    { name: 'Column Series 1', type: CHART_TYPE.COLUMN, chartId: "columnSeries1", index: 19, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.BLUE },
+    { name: 'Column Series 2', type: CHART_TYPE.COLUMN, chartId: "columnSeries2", index: 19, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.BLACK }
 ]
 
 export const YAXIS_CONFIGS: Array<any> = [{
     crosshair: {
         label: {
-            enable: true,
+            enable: false,
             format: '{value:.2f}'
         }
     },
+    height: '30%',
+    labels: {
+        text: ''
+    },
+    offset: 0,
     title: {
         offset: 60,
         text: 'Price'
     },
-    top: `0%`,
-    height: `30%`,
-    offset: 0,
+    top: '0%',
 },
 {
     crosshair: {
         label: {
-            enable: true,
+            enable: false,
             format: '{value:.2f}'
         }
     },
+    height: '30%',
+    labels: {
+        text: ''
+    },
+    offset: 0,
     title: {
         offset: 60,
         text: 'Price'
     },
-    top: `33%`,
-    height: `30%`,
-    offset: 0,
+    top: '33%',
 },
 {
     crosshair: {
         label: {
-            enable: true,
+            enable: false,
             format: '{value:.2f}'
         }
     },
+    height: '30%',
+    labels: {
+        text: ''
+    },
+    offset: 0,
     title: {
         offset: 60,
         text: 'Volume'
     },
-    top: `67%`,
-    height: `30%`,
-    offset: 0,
+    top: '67%',
 },
 ];

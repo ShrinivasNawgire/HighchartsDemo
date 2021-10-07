@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as Highcharts from 'highcharts/highstock';
-import { CHART_TYPE, LINE_SERIES_CONFIGS, SCATTER_SERIES_CONFIGS, YAXIS_CONFIGS } from 'src/constants/chart.config.constant';
+import { CHART_TYPE, LINE_SERIES_CONFIGS, SCATTER_SERIES_CONFIGS, COLUMN_SERIS_CONFIGS, YAXIS_CONFIGS } from 'src/constants/chart.config.constant';
 import { SeriesConfig } from 'src/constants/series.config';
 const scatterSeries1 = require('./../assets/dummyJSON/scatterSeries1.json');
 const scatterSeries2 = require('./../assets/dummyJSON/scatterSeries2.json');
@@ -43,8 +43,19 @@ export class AppComponent {
 
     this.options = {
       chart: {
-        type: 'scatter',
-        zoomType: 'xy'
+        plotBackgroundColor: "#ffffff",
+        zoomType: 'x',
+        borderWidth: 1,
+        borderColor: "transparent",
+        backgroundColor: "#f6f6f6",
+        marginRight: 3,
+        marginBottom: 40,
+        marginTop: 20,
+        resetZoomButton: {
+          theme: {
+            display: "none"
+          }
+        }
       },
       title: {
         text: ''
@@ -56,7 +67,7 @@ export class AppComponent {
         minRange: 10000,
         offset: 0,
         labels: {
-
+          text: ''
         }
       },
       yAxis: this.getYAxis(),
@@ -124,7 +135,6 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-    // console.log(this.columnSeriesAll, this.lineSeriesAll, this.scatterSeriesAll);
     Highcharts.chart('container', this.options);
   }
 
@@ -132,70 +142,88 @@ export class AppComponent {
     const columnSeries = this.getColumnSeries();
     const scatterSeries = this.getScatterSeries();
     const lineSeries = this.getLineSeries();
-    return [columnSeries, scatterSeries, lineSeries];
+    return [...columnSeries, ...scatterSeries, ...lineSeries];
   }
 
   getColumnSeries() {
-    let series: SeriesConfig<Highcharts.SeriesColumnOptions> = new SeriesConfig<Highcharts.SeriesColumnOptions>(columnSeries1, CHART_TYPE.COLUMN);
-    const dataPoint = columnSeries1.data;
+    const allColumnSeries: Array<any> = [];
+    allColumnSeries.push(columnSeries1, columnSeries2);
 
-    return <Highcharts.SeriesColumnOptions>series
-      .setAttr("data", dataPoint)
-      .setAttr("yAxis", 1)
-      .setAttr("zIndex", 0)
-      .setAttr("legendIndex", 99)
-      .setAttr("index", 0)
-      .build();
+    return COLUMN_SERIS_CONFIGS.map(obj => {
+      const series: SeriesConfig<Highcharts.SeriesColumnOptions> = new SeriesConfig<Highcharts.SeriesColumnOptions>(obj.chartId, CHART_TYPE.COLUMN);
+
+      const seriesData = allColumnSeries.find(series => series.seriesName === obj.chartId);
+
+      if (!seriesData) {
+        return;
+      }
+
+      series
+        .setAttr("color", obj.color)
+        .setAttr("yAxis", 1)
+        .setAttr("zIndex", 0)
+        .setAttr("legendIndex", 99)
+        .setAttr("index", 0)
+        .setAttr("showInLegend", false)
+        .setAttr("data", seriesData.data);
+      return series.build();
+    })
   }
 
   getScatterSeries() {
-    const AllScatterSeries: Array<any> = [];
-    AllScatterSeries.push(scatterSeries1, scatterSeries2, scatterSeries3, scatterSeries4,
+    const allScatterSeries: Array<any> = [];
+    allScatterSeries.push(scatterSeries1, scatterSeries2, scatterSeries4,
       scatterSeries5, scatterSeries6, scatterSeries7, scatterSeries8, scatterSeries9,
       scatterSeries10, scatterSeries11, scatterSeries12, scatterSeries13);
 
     return SCATTER_SERIES_CONFIGS.map(obj => {
       const series: SeriesConfig<Highcharts.SeriesScatterOptions> = new SeriesConfig<Highcharts.SeriesScatterOptions>(obj.chartId, CHART_TYPE.SCATTER);
-      const seriesData = AllScatterSeries.find(series => series.seriesName === obj.chartId);
-      // console.log(seriesData);
+
+      const seriesData = allScatterSeries.find(series => series.seriesName === obj.chartId);
       if (!seriesData) {
         return;
       }
       series
-        .setAttr("data", seriesData.data ? seriesData.data : [])
         .setAttr("color", obj.color)
-        .setAttr("zIndex", 1);
-        if (obj.symbol) {
-          series.setMarkerShape(obj.symbol);
-        }
-        if (obj.index) {
-          series.setAttr("index", obj.index);
-        }
-        series.setAttr("id", obj.chartId);
-        if (obj.legendIndex) {
-          series.setAttr("legendIndex", obj.legendIndex);
-        }
-        if (obj.marker) {
-          series.setAttr("marker", obj.marker);
-        }
-
-        console.log(series);
-        return series.build();
+        .setAttr("zIndex", 1)
+        .setAttr("showInLegend", false);
+      if (obj.symbol) {
+        series.setMarkerShape(obj.symbol);
+      }
+      if (obj.marker) {
+        series.setAttr("marker", obj.marker);
+      }
+      
+      series.setAttr("data", seriesData.data ? seriesData.data : []);
+      return series.build();
     });
   }
 
   getLineSeries() {
-    let series: SeriesConfig<Highcharts.SeriesLineOptions> = new SeriesConfig<Highcharts.SeriesLineOptions>(lineSeries1, CHART_TYPE.LINE);
+    const allLineSeries: Array<any> = [];
+    allLineSeries.push(lineSeries1, lineSeries3, lineSeries4, lineSeries5);
 
-    const dataPoint = lineSeries1.data;
+    return LINE_SERIES_CONFIGS.map(obj => {
+      const series: SeriesConfig<Highcharts.SeriesLineOptions> = new SeriesConfig<Highcharts.SeriesLineOptions>(obj.chartId, CHART_TYPE.LINE);
 
-    return <Highcharts.SeriesLineOptions>series
-      .setAttr("data", dataPoint)
-      .setAttr("color", "green")
-      .setAttr("yAxis", 0)
-      .setAttr("zIndex", 0)
-      .setAttr("legendIndex", 99)
-      .build();
+      const seriesData = allLineSeries.find(series => series.seriesName === obj.chartId);
+
+      if (!seriesData) {
+        return;
+      }
+
+      series
+        .setAttr("step", "left")
+        .setAttr("color", obj.color)
+        .setAttr("yAxis", 1)
+        .setAttr("zIndex", 0)
+        .setAttr("legendIndex", 99)
+        .setAttr("index", 0)
+        .setAttr("showInLegend", false)
+        .setAttr("data", seriesData.data);
+
+      return series.build();
+    });
   }
 
   getYAxis() {
