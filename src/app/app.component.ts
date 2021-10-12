@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, setTestabilityGetter } from '@angular/core';
 import * as Highcharts from 'highcharts/highstock';
 import { CHART_TYPE, LINE_SERIES_CONFIGS, SCATTER_SERIES_CONFIGS, COLUMN_SERIS_CONFIGS, YAXIS_CONFIGS } from 'src/constants/chart.config.constant';
 import { SeriesConfig } from 'src/constants/series.config';
@@ -58,6 +58,7 @@ export class AppComponent {
           }
         }
       },
+      height: '750px',
       title: {
         text: ''
       },
@@ -155,9 +156,9 @@ export class AppComponent {
 
       series
         .setAttr("color", obj.color)
-        .setAttr("yAxis", 1)
+        .setAttr("yAxis", 2)
         .setAttr("zIndex", 0)
-        .setAttr("legendIndex", 99)
+        .setAttr("legendIndex", 19)
         .setAttr("index", 0)
         .setAttr("showInLegend", false)
         .setAttr("data", seriesData.data);
@@ -182,14 +183,19 @@ export class AppComponent {
       series
         .setAttr("color", obj.color)
         .setAttr("zIndex", 1)
-        .setAttr("showInLegend", false);
+        .setAttr("showInLegend", false)
+        .setAttr("legendIndex", obj.legendIndex)
+        .setAttr("index", obj.index)
+        .setAttr("id", obj.chartId)
+        .setAttr("yAxis", 1);
+
       if (obj.symbol) {
         series.setMarkerShape(obj.symbol);
       }
       if (obj.marker) {
         series.setAttr("marker", obj.marker);
       }
-      
+
       series.setAttr("data", seriesData.data ? seriesData.data : []);
       return series.build();
     });
@@ -210,7 +216,7 @@ export class AppComponent {
       series
         .setAttr("step", "left")
         .setAttr("color", obj.color)
-        .setAttr("yAxis", 1)
+        .setAttr("yAxis", 0)
         .setAttr("zIndex", 0)
         .setAttr("legendIndex", 99)
         .setAttr("index", 0)

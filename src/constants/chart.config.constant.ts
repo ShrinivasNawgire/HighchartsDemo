@@ -19,7 +19,9 @@ export enum SERIES_COLORS {
     RED = "red",
     VIOLET = "violet",
     BLUE = "blue",
-    BLACK = "black"
+    BLACK = "black",
+    INDIGO = "indigo",
+    YELLOW = "yellow"
 }
 
 export const SCATTER_SERIES_CONFIGS: Array<any> = [
@@ -40,7 +42,7 @@ export const SCATTER_SERIES_CONFIGS: Array<any> = [
 
 export const LINE_SERIES_CONFIGS: Array<any> = [
     { name: 'Line Series 1', type: CHART_TYPE.LINE, chartId: "lineSeries1", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLUE },
-    { name: 'Line Series 2', type: CHART_TYPE.LINE, chartId: "lineSeries2", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLACK },
+    { name: 'Line Series 2', type: CHART_TYPE.LINE, chartId: "lineSeries2", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.YELLOW },
     { name: 'Line Series 3', type: CHART_TYPE.LINE, chartId: "lineSeries31", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
     { name: 'Line Series 4', type: CHART_TYPE.LINE, chartId: "lineSeries32", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
     { name: 'Line Series 5', type: CHART_TYPE.LINE, chartId: "lineSeries33", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
@@ -49,8 +51,8 @@ export const LINE_SERIES_CONFIGS: Array<any> = [
 ]
 
 export const COLUMN_SERIS_CONFIGS: Array<any> = [
-    { name: 'Column Series 1', type: CHART_TYPE.COLUMN, chartId: "columnSeries1", index: 19, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.BLUE },
-    { name: 'Column Series 2', type: CHART_TYPE.COLUMN, chartId: "columnSeries2", index: 19, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.BLACK }
+    { name: 'Column Series 1', type: CHART_TYPE.COLUMN, chartId: "columnSeries1", index: 19, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.INDIGO },
+    { name: 'Column Series 2', type: CHART_TYPE.COLUMN, chartId: "columnSeries2", index: 19, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.VIOLET }
 ]
 
 export const YAXIS_CONFIGS: Array<any> = [{
