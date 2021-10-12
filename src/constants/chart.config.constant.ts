@@ -25,7 +25,7 @@ export enum SERIES_COLORS {
 export const SCATTER_SERIES_CONFIGS: Array<any> = [
     { name: 'Scatter Series 1', chartId: "scatterSeries1", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.GREEN },
     { name: 'Scatter Series 2', chartId: "scatterSeries2", index: 2, legendIndex: 2, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.GREY },
-    // { name: 'Scatter Series 3', chartId: "scatterSeries3", index: 3, legendIndex: 3, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.ORANGE },
+    { name: 'Scatter Series 3', chartId: "scatterSeries3", index: 3, legendIndex: 3, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.ORANGE },
     { name: 'Scatter Series 4', chartId: "scatterSeries4", index: 4, legendIndex: 4, symbol: MARKER_SYMBOL.SQUARE, color: SERIES_COLORS.RED },
     { name: 'Scatter Series 5', chartId: "scatterSeries5", index: 5, legendIndex: 5, symbol: MARKER_SYMBOL.TRIANGLE, color: SERIES_COLORS.GREEN },
     { name: 'Scatter Series 6', chartId: "scatterSeries6", index: 6, legendIndex: 6, symbol: MARKER_SYMBOL.TRIANGLE, color: SERIES_COLORS.GREY },
