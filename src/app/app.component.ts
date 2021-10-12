@@ -17,10 +17,12 @@ const scatterSeries12 = require('./../assets/dummyJSON/scatterSeries12.json');
 const scatterSeries13 = require('./../assets/dummyJSON/scatterSeries13.json');
 
 const lineSeries1 = require('./../assets/dummyJSON/lineSeries1.json');
-// const lineSeries2 = require('./../assets/dummyJSON/lineSeries2.json');
+const lineSeries2 = require('./../assets/dummyJSON/lineSeries2.json');
 const lineSeries3 = require('./../assets/dummyJSON/lineSeries31.json');
-const lineSeries4 = require('./../assets/dummyJSON/lineSeries34.json');
-const lineSeries5 = require('./../assets/dummyJSON/lineSeries35.json');
+const lineSeries4 = require('./../assets/dummyJSON/lineSeries32.json');
+const lineSeries5 = require('./../assets/dummyJSON/lineSeries33.json');
+const lineSeries6 = require('./../assets/dummyJSON/lineSeries34.json');
+const lineSeries7 = require('./../assets/dummyJSON/lineSeries35.json');
 
 
 const columnSeries1 = require('./../assets/dummyJSON/columnSeries1.json');
@@ -109,11 +111,6 @@ export class AppComponent {
           series: {
             marker: {
               enabled: true
-            },
-            point: {
-              events: {
-                // mouseOut: () => { }
-              }
             }
           }
         },
@@ -151,7 +148,6 @@ export class AppComponent {
 
     return COLUMN_SERIS_CONFIGS.map(obj => {
       const series: SeriesConfig<Highcharts.SeriesColumnOptions> = new SeriesConfig<Highcharts.SeriesColumnOptions>(obj.chartId, CHART_TYPE.COLUMN);
-
       const seriesData = allColumnSeries.find(series => series.seriesName === obj.chartId);
 
       if (!seriesData) {
@@ -178,11 +174,12 @@ export class AppComponent {
 
     return SCATTER_SERIES_CONFIGS.map(obj => {
       const series: SeriesConfig<Highcharts.SeriesScatterOptions> = new SeriesConfig<Highcharts.SeriesScatterOptions>(obj.chartId, CHART_TYPE.SCATTER);
-
       const seriesData = allScatterSeries.find(series => series.seriesName === obj.chartId);
+
       if (!seriesData) {
         return;
       }
+
       series
         .setAttr("color", obj.color)
         .setAttr("zIndex", 1)
@@ -201,11 +198,10 @@ export class AppComponent {
 
   getLineSeries() {
     const allLineSeries: Array<any> = [];
-    allLineSeries.push(lineSeries1, lineSeries3, lineSeries4, lineSeries5);
+    allLineSeries.push(lineSeries1, lineSeries2, lineSeries3, lineSeries4, lineSeries5, lineSeries6, lineSeries7);
 
     return LINE_SERIES_CONFIGS.map(obj => {
       const series: SeriesConfig<Highcharts.SeriesLineOptions> = new SeriesConfig<Highcharts.SeriesLineOptions>(obj.chartId, CHART_TYPE.LINE);
-
       const seriesData = allLineSeries.find(series => series.seriesName === obj.chartId);
 
       if (!seriesData) {
