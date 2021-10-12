@@ -40,10 +40,12 @@ export const SCATTER_SERIES_CONFIGS: Array<any> = [
 
 export const LINE_SERIES_CONFIGS: Array<any> = [
     { name: 'Line Series 1', type: CHART_TYPE.LINE, chartId: "lineSeries1", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLUE },
-    // { name: 'Line Series 2', type: CHART_TYPE.LINE, chartId: "lineSeries2", index: 1, legendIndex: 1, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLACK },
+    { name: 'Line Series 2', type: CHART_TYPE.LINE, chartId: "lineSeries2", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.BLACK },
     { name: 'Line Series 3', type: CHART_TYPE.LINE, chartId: "lineSeries31", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
-    { name: 'Line Series 4', type: CHART_TYPE.LINE, chartId: "lineSeries34", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
-    { name: 'Line Series 5', type: CHART_TYPE.LINE, chartId: "lineSeries35", index: 99, legendIndex: 9, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET }
+    { name: 'Line Series 4', type: CHART_TYPE.LINE, chartId: "lineSeries32", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
+    { name: 'Line Series 5', type: CHART_TYPE.LINE, chartId: "lineSeries33", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
+    { name: 'Line Series 6', type: CHART_TYPE.LINE, chartId: "lineSeries34", index: 99, legendIndex: 99, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET },
+    { name: 'Line Series 7', type: CHART_TYPE.LINE, chartId: "lineSeries35", index: 99, legendIndex: 9, symbol: MARKER_SYMBOL.LINE, color: SERIES_COLORS.VIOLET }
 ]
 
 export const COLUMN_SERIS_CONFIGS: Array<any> = [

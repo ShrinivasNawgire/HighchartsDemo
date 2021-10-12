@@ -24,7 +24,6 @@ const lineSeries5 = require('./../assets/dummyJSON/lineSeries33.json');
 const lineSeries6 = require('./../assets/dummyJSON/lineSeries34.json');
 const lineSeries7 = require('./../assets/dummyJSON/lineSeries35.json');
 
-
 const columnSeries1 = require('./../assets/dummyJSON/columnSeries1.json');
 const columnSeries2 = require('./../assets/dummyJSON/columnSeries2.json');
 
@@ -168,7 +167,7 @@ export class AppComponent {
 
   getScatterSeries() {
     const allScatterSeries: Array<any> = [];
-    allScatterSeries.push(scatterSeries1, scatterSeries2, scatterSeries4,
+    allScatterSeries.push(scatterSeries1, scatterSeries2, scatterSeries3, scatterSeries4,
       scatterSeries5, scatterSeries6, scatterSeries7, scatterSeries8, scatterSeries9,
       scatterSeries10, scatterSeries11, scatterSeries12, scatterSeries13);
 
