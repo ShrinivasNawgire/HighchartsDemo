@@ -127,11 +127,18 @@ export class AppComponent {
           }
         }
       },
-      series: [...SERIES]
+      series: [...SERIES],
+      boost: {
+        useGPUTranslations: true,
+        seriesThreshold: 5
+      },
     }
   }
 
   ngAfterViewInit() {
+    require('highcharts/highcharts-more')(Highcharts);
+    require('highcharts/modules/boost')(Highcharts);
+
     Highcharts.chart('container', this.options);
   }
 
