@@ -111,6 +111,15 @@ export class AppComponent {
           series: {
             marker: {
               enabled: true
+            },
+            dataGrouping: {
+              enabled: true,
+              forced: true,
+              units: [[
+                'millisecond', // unit name
+                [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
+              ]],
+              groupPixelWidth: 30
             }
           }
         },
@@ -129,7 +138,7 @@ export class AppComponent {
       },
       series: [...SERIES],
       boost: {
-        useGPUTranslations: true,
+        allowForce: true,
         seriesThreshold: 5
       },
     }
