@@ -162,6 +162,12 @@ export class AppComponent {
     const allColumnSeries: Array<any> = [];
     allColumnSeries.push(columnSeries1, columnSeries2);
 
+    allColumnSeries.forEach(series => {
+      series.data = series.data.sort((a: any, b: any) => {
+        return a[0] - b[0];
+      });
+    });
+
     return COLUMN_SERIS_CONFIGS.map(obj => {
       const series: SeriesConfig<Highcharts.SeriesColumnOptions> = new SeriesConfig<Highcharts.SeriesColumnOptions>(obj.chartId, CHART_TYPE.COLUMN);
       const seriesData = allColumnSeries.find(series => series.seriesName === obj.chartId);
@@ -187,6 +193,12 @@ export class AppComponent {
     allScatterSeries.push(scatterSeries1, scatterSeries2, scatterSeries3, scatterSeries4,
       scatterSeries5, scatterSeries6, scatterSeries7, scatterSeries8, scatterSeries9,
       scatterSeries10, scatterSeries11, scatterSeries12, scatterSeries13);
+
+    allScatterSeries.forEach(series => {
+      series.data = series.data.sort((a: any, b: any) => {
+        return a[0] - b[0];
+      });
+    });
 
     return SCATTER_SERIES_CONFIGS.map(obj => {
       const series: SeriesConfig<Highcharts.SeriesScatterOptions> = new SeriesConfig<Highcharts.SeriesScatterOptions>(obj.chartId, CHART_TYPE.SCATTER);
@@ -220,6 +232,12 @@ export class AppComponent {
   getLineSeries() {
     const allLineSeries: Array<any> = [];
     allLineSeries.push(lineSeries1, lineSeries2, lineSeries3, lineSeries4, lineSeries5, lineSeries6, lineSeries7);
+
+    allLineSeries.forEach(series => {
+      series.data = series.data.sort((a: any, b: any) => {
+        return a[0] - b[0];
+      });
+    });
 
     return LINE_SERIES_CONFIGS.map(obj => {
       const series: SeriesConfig<Highcharts.SeriesLineOptions> = new SeriesConfig<Highcharts.SeriesLineOptions>(obj.chartId, CHART_TYPE.LINE);
